@@ -19,7 +19,7 @@ func RedisTest() {
 
 	//fmt.Println(rdb.Ping(ctx))
 
-	err := rdb.Set(ctx, "key", "value", time.Second * 500).Err()
+	err := rdb.Set(ctx, "key", "value", time.Second*500).Err()
 	if err != nil {
 		panic(err)
 	}

@@ -4,10 +4,11 @@ import (
 	"LC/sometest"
 )
 
-func main()  {
+func main() {
 	sometest.StringTest()
 	sometest.TestVector()
 	sometest.SortTest()
 	sometest.SortKeysTest()
 	sometest.SortMultiKeysTest()
+	sometest.SortWrapperTest()
 }

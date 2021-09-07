@@ -124,16 +124,16 @@ func SortKeysTest() {
 }
 
 type Change struct {
-	user string
+	user     string
 	language string
-	lines int
+	lines    int
 }
 
-type lessFunc func (p1, p2 *Change) bool
+type lessFunc func(p1, p2 *Change) bool
 
 type multiSorter struct {
 	changes []Change
-	less []lessFunc
+	less    []lessFunc
 }
 
 func (ms *multiSorter) Len() int {
@@ -175,7 +175,7 @@ func OrderedBy(less ...lessFunc) *multiSorter {
 	}
 }
 
-func SortMultiKeysTest(){
+func SortMultiKeysTest() {
 	var changes = []Change{
 		{"gri", "Go", 100},
 		{"ken", "C", 150},
@@ -218,4 +218,57 @@ func SortMultiKeysTest(){
 
 	OrderedBy(language, increasingLines, user).Sort(changes)
 	fmt.Println("By language,<lines,user:", changes)
+}
+
+type Grams int
+
+func (g Grams) String() string {
+	return fmt.Sprintf("%dg", int(g))
+}
+
+type Organ struct {
+	Name   string
+	Weight Grams
+}
+
+type Organs []*Organ
+
+func (s Organs) Len() int      { return len(s) }
+func (s Organs) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+
+// ByName implements sort.Interface by providing Less and using the Len and
+// Swap methods of the embedded Organs value.
+type ByName struct{ Organs }
+
+func (s ByName) Less(i, j int) bool { return s.Organs[i].Name < s.Organs[j].Name }
+
+// ByWeight implements sort.Interface by providing Less and using the Len and
+// Swap methods of the embedded Organs value.
+type ByWeight struct{ Organs }
+
+func (s ByWeight) Less(i, j int) bool { return s.Organs[i].Weight < s.Organs[j].Weight }
+
+func SortWrapperTest() {
+	s := []*Organ{
+		{"brain", 1340},
+		{"heart", 290},
+		{"liver", 1494},
+		{"pancreas", 131},
+		{"prostate", 62},
+		{"spleen", 162},
+	}
+
+	sort.Sort(ByName{s})
+	fmt.Println("Organs by name:")
+	printOrgans(s)
+
+	sort.Sort(ByWeight{s})
+	fmt.Println("Organs by weight:")
+	printOrgans(s)
+}
+
+func printOrgans(s []*Organ) {
+	for _, o := range s {
+		fmt.Printf("%-8s (%v)\n", o.Name, o.Weight)
+	}
 }

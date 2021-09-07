@@ -2,7 +2,7 @@ package sometest
 
 import "fmt"
 
-func StringTest(){
+func StringTest() {
 	a := string("hello world")
 	fmt.Println(a[:3], len(a))
 	var y = []byte{5: 'y'}
