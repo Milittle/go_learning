@@ -66,11 +66,11 @@ func forrangetest(ch <-chan uint64) {
 	go func() {
 		x, y := uint64(0), uint64(1)
 		for ; y < (1 << 63); c <- y {
-			x, y = y, x + y
+			x, y = y, x+y
 		}
 		close(c)
 	}()
-	for x := range ch{
+	for x := range ch {
 		fmt.Println("x value is: ", x)
 	}
 }
@@ -78,7 +78,7 @@ func forrangetest(ch <-chan uint64) {
 func selecttest() {
 	var ch chan struct{}
 	select {
-	case <- ch:
+	case <-ch:
 	case ch <- struct{}{}:
 	default:
 		fmt.Println("Go here.")
@@ -93,8 +93,10 @@ func selecttest() {
 	}
 	tryReceive := func() string {
 		select {
-		case v := <-c: return v
-		default: return "-" // 如果c的缓冲为空，则执行默认分支。
+		case v := <-c:
+			return v
+		default:
+			return "-" // 如果c的缓冲为空，则执行默认分支。
 		}
 	}
 	trySend("Hello!") // 发送成功
