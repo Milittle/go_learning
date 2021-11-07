@@ -1,6 +1,11 @@
 package main
 
 import (
+	"LC/designpattern/adapter"
+	"LC/designpattern/bridge"
+	"LC/designpattern/composite"
+	"LC/designpattern/singleton"
+	"LC/redistest"
 	"LC/sometest"
 	"fmt"
 	"log"
@@ -26,8 +31,13 @@ func (a IntSlice) Swap(i, j int) {
 }
 
 func main() {
+	x := 1
+	x, y := 2, x
+	fmt.Println(x, y)
+
 	sometest.MapTest()
 	sometest.ChannelTest()
+	redistest.RedisTest()
 	fmt.Println(runtime.GOMAXPROCS(0))
 	fmt.Println(math.Inf(-1), math.Inf(1))
 	go func() {
@@ -35,5 +45,12 @@ func main() {
 	}()
 	runtime.Gosched()
 	fmt.Println(sort.IsSorted(IntSlice{2, 2, 2}))
+	for i := 0; i < 5; i++ {
+		singleton.GetSingleton()
+	}
+	adapter.TestAdapter()
+	bridge.TestBridge()
+	composite.TestComposite()
+	fmt.Scanln()
 	select {}
 }
