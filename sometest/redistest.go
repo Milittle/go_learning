@@ -1,4 +1,4 @@
-package redistest
+package sometest
 
 import (
 	"context"
@@ -11,8 +11,8 @@ var ctx = context.Background()
 
 func RedisTest() {
 	rdb := redis.NewClient(&redis.Options{
-		Addr:     "[2400:8902::f03c:92ff:fe51:5871]:6379",
-		DB:       0,
+		Addr: "[2400:8902::f03c:92ff:fe51:5871]:6379",
+		DB:   0,
 	})
 
 	//fmt.Println(rdb.Ping(ctx))
