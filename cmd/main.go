@@ -5,7 +5,6 @@ import (
 	"LC/designpattern/bridge"
 	"LC/designpattern/composite"
 	"LC/designpattern/singleton"
-	"LC/redistest"
 	"LC/sometest"
 	"fmt"
 	"log"
@@ -37,7 +36,7 @@ func main() {
 
 	sometest.MapTest()
 	sometest.ChannelTest()
-	redistest.RedisTest()
+	sometest.RedisTest()
 	fmt.Println(runtime.GOMAXPROCS(0))
 	fmt.Println(math.Inf(-1), math.Inf(1))
 	go func() {
