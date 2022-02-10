@@ -23,7 +23,9 @@ func (a IntSlice) Swap(i, j int) {
 }
 
 func main() {
-	channel.Test01()
+	channel.Notification01()
+	channel.Notification02()
+	channel.Notification04()
 	go func() {
 		log.Println(http.ListenAndServe("localhost:6060", nil))
 	}()
