@@ -57,7 +57,6 @@ func Notification02() {
 //以上两者通知没有本质区别，都是较快者等待较慢者
 
 //多对单和 单对多通知
-type T struct{}
 
 func worker(id int, ready <-chan T, done chan<- T) {
 	<-ready

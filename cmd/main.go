@@ -1,7 +1,7 @@
 package main
 
 import (
-	"LC/sometest/channel"
+	"LC/container/heaptest"
 	"log"
 	"net/http"
 	_ "net/http/pprof"
@@ -23,9 +23,7 @@ func (a IntSlice) Swap(i, j int) {
 }
 
 func main() {
-	channel.Notification01()
-	channel.Notification02()
-	channel.Notification04()
+	heaptest.PeopleHeapTest()
 	go func() {
 		log.Println(http.ListenAndServe("localhost:6060", nil))
 	}()
