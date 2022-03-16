@@ -1,7 +1,7 @@
 package main
 
 import (
-	"LC/container/heaptest"
+	"LC/sometest"
 	"log"
 	"net/http"
 	_ "net/http/pprof"
@@ -23,7 +23,7 @@ func (a IntSlice) Swap(i, j int) {
 }
 
 func main() {
-	heaptest.PeopleHeapTest()
+	sometest.Neo4jTest()
 	go func() {
 		log.Println(http.ListenAndServe("localhost:6060", nil))
 	}()
