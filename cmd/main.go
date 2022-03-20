@@ -23,7 +23,8 @@ func (a IntSlice) Swap(i, j int) {
 }
 
 func main() {
-	sometest.Neo4jTest()
+	//sometest.Neo4jTest()
+	sometest.DataBendTest()
 	go func() {
 		log.Println(http.ListenAndServe("localhost:6060", nil))
 	}()
