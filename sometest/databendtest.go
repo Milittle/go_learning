@@ -1,7 +1,7 @@
 package sometest
 
 import (
-	"LC/tools"
+	"go_learning/tools"
 	"database/sql"
 	"fmt"
 	"log"

@@ -1,8 +1,8 @@
 package sometest
 
 import (
-	"LC/tools"
 	"fmt"
+	"go_learning/tools"
 
 	"github.com/neo4j/neo4j-go-driver/v4/neo4j"
 )
